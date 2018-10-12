@@ -6,10 +6,16 @@
   <meta charset="UTF-8">
   <title>Train Scheduler</title>
 
+    <!--- Google Font Link -->
+  <link href="https://fonts.googleapis.com/css?family=Almendra+SC|Aref+Ruqaa|IM+Fell+Great+Primer+SC|Junge" rel="stylesheet">
+
+
   <!-- Bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="./asset/style/style.css">
 
   <!-- Firebase Reference -->
   <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
@@ -18,7 +24,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
 
   <style>
-    #employee-table th,
+    #train-table th,
     td {
       display: inline-block;
       width: 16.575%;
@@ -31,8 +37,8 @@
 
   <div class="container">
 
-    <div class="jumbotron" style="background-color: black; color: white">
-      <h1 class="text-center">Train Scheduler</h1>
+    <div class="container title-wrap">
+      <h1 class="text-center" class="gfont1">Train Scheduler</h1>
       <h3 class="text-center">a simple train schedule</h3>
     </div>
 
@@ -41,9 +47,9 @@
       <div class="col-md-12">
 
         <div class="card mb-4">
-          <div class="card-header">Train Scheulde</div>
+          <div class="card-header">Last Update: <span id="last-update"></span></div>
           <div class="card-body">
-            <table class="table table-sm table-hover" id='employee-table'>
+            <table class="table table-sm table-hover" id='train-table'>
               <thead>
                 <tr>
                   <th scope="col">Train Name</th>

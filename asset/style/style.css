@@ -1,0 +1,21 @@
+body {
+  background: url("../img/bg.png") repeat fixed center;
+
+}
+
+
+.title-wrap {
+  font-family: 'Junge', serif;
+  height: 100px;
+  box-shadow: 0px 10px 10px grey;
+  margin-bottom: 25px;
+}
+
+
+
+/*
+font-family: 'Aref Ruqaa', serif;
+font-family: 'Junge', serif;
+font-family: 'Almendra SC', serif;
+font-family: 'IM Fell Great Primer SC', serif;
+*/

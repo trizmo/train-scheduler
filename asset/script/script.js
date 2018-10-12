@@ -20,10 +20,10 @@ $("#add-train-btn").on("click", function (event) {
   // Grabs user input
   var trnName = $("#train-name-input").val().trim();
   var trndDestination = $("#destination-input").val().trim();
-  var trnFirst = moment($("#first-input").val().trim(), "HHmm");
+  var trnFirst = moment($("#first-input").val().trim(), "HHmm").format("HHmm");
   var trnFreq = $("#freq-input").val().trim();
 
-  // Creates local "temporary" object for holding employee data
+  // Creates local "temporary" object for holding train data
   var newTrain = {
     name: trnName,
     destination: trndDestination,
@@ -38,7 +38,7 @@ $("#add-train-btn").on("click", function (event) {
 
 
 
-  // Uploads employee data to the database
+  // Uploads train data to the database
   database.ref().push(newTrain);
 
   // Logs everything to console
@@ -56,7 +56,7 @@ $("#add-train-btn").on("click", function (event) {
   $("#freq-input").val("");
 });
 
-// 3. Create Firebase event for adding employee to the database and a row in the html when a user adds an entry
+// 3. Create Firebase event for adding train to the database and a row in the html when a user adds an entry
 database.ref().on("child_added", function (childSnapshot) {
   console.log(childSnapshot.val());
 
@@ -71,13 +71,19 @@ database.ref().on("child_added", function (childSnapshot) {
   var timeNow = moment();
   console.log("time now: " + timeNow.format("hh:mm a"));
 
-  var toNow = moment(formatMil).toNow();
+  // var toNow = moment(formatMil);
 
-  // Employee Info
+  // minutes away and next arrival
+  var minutes = moment().diff(moment.unix(trnFirst), "minutes") % trnFreq;
+  var minutesAway = trnFreq - minutes;
+  var nextArrival = moment().add(minutesAway, "m").format("hh:mm A");
+
+
+  // train Info
   console.log(trnName);
   console.log(trndDestination);
   console.log(formatMil);
-  console.log(toNow);
+  console.log(nextArrival);
   console.log(trnFreq);
 
 
@@ -86,10 +92,14 @@ database.ref().on("child_added", function (childSnapshot) {
     $("<td>").text(trnName),
     $("<td>").text(trndDestination),
     $("<td>").text(trnFreq + " minutes"),
-    $("<td>").text(toNow),
-    $("<td>").text(trnFreq),
+    $("<td>").text(nextArrival),
+    $("<td>").text(minutesAway),
   );
 
+  $("#last-update").text(timeNow.format("hh:mm a"))
+
   // Append the new row to the table
-  $("#employee-table > tbody").append(newRow);
+  $("#train-table > tbody").append(newRow);
 });
+
+
