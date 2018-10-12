@@ -88,7 +88,6 @@ database.ref().on("child_added", function (childSnapshot) {
     $("<td>").text(trnFreq + " minutes"),
     $("<td>").text(toNow),
     $("<td>").text(trnFreq),
-    $("<td>").text(trnFreq)
   );
 
   // Append the new row to the table
